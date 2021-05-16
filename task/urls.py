@@ -9,7 +9,7 @@ urlpatterns = [
     # url(r'^$', 'task.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     path(r'admin/', admin.site.urls),
-    path(r'home', views.home, name='home'),
+    path(r'', views.home, name='home'),
     path(r'index', views.index, name='index'),
     path(r'addsuccess', views.addsuccess, name='addsuccess'),
     path(r'usermod', views.usermod, name='usermod'),
