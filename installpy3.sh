@@ -1,14 +1,14 @@
 #!/bin/bash
 VERSION="3.9.5"
 PYTHON="Python-$VERSION"
-MD5="ef7f82485e83c7f8f8bcb920a9c2457b"
+MD5="b3fb85fd479c0bf950c626ef80cacb57"
 PREFIX="`pwd`/usr"
 PY_PATH="bin/python3"
 DOWNLOAD_PREFIX="http://www.python.org/ftp/python/$VERSION"
 DOWNLOADDIR="downloads"
 LOGNAME="output.log"
-SETUPTOOL_VERSION="56.2.0"
-PIP_VERSION="19.0.3"
+SETUPTOOL_VERSION="53.0.0"
+PIP_VERSION="21.0.1"
 
 mkdir -p $DOWNLOADDIR
 cd $DOWNLOADDIR
@@ -49,17 +49,14 @@ echo "$PYTHON is installed here:"
 echo "./usr/bin/python3"
 echo "*********************************************"
 
-if [ ! -f "setuptools-$SETUPTOOL_VERSION.zip" ];
+if [ ! -f "setuptools-$SETUPTOOL_VERSION.tar.gz" ];
 then
-  wget -c https://files.pythonhosted.org/packages/fc/0a/b486efab52f8ad03c3eca0c998dd3deafba0c39b29e0c49c68a7152c8b2d/setuptools-$SETUPTOOL_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME 
+    wget -c https://files.pythonhosted.org/packages/12/68/95515eaff788370246dac534830ea9ccb0758e921ac9e9041996026ecaf2/setuptools-$SETUPTOOL_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
 fi
 if [ ! -f "pip-$PIP_VERSION.tar.gz" ];
 then
-    wget -c https://files.pythonhosted.org/packages/ee/35/f6e57af21e1a460c09132340e13082ff09ef8797011aa83e51d9db173b9d/pipi-1.0.1.tar.gz 1>>$LOGNAME 2>>$LOGNAME
+    wget -c https://files.pythonhosted.org/packages/b7/2d/ad02de84a4c9fd3b1958dc9fb72764de1aa2605a9d7e943837be6ad82337/pip-$PIP_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
 fi
-echo `pwd`
-
-#unzip -o setuptools-$SETUPTOOL_VERSION.zip 1>>$LOGNAME 2>>$LOGNAME
 tar zxf setuptools-$SETUPTOOL_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
 tar xf pip-$PIP_VERSION.tar.gz
 echo "*********************************************"
