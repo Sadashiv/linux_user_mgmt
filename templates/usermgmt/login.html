@@ -2,7 +2,7 @@
 {% block title %}Login {% endblock %}
 {% block body_block %}
 
-	<form id="login_form" method="post" action="usermgmt/login/">
+	<form id="login_form" method="post" action="login">
 	<h3 style="font-weight: bold; margin-left:320px">Please sign in</h3>
 	{% csrf_token %}
 	{% if bad_details %}
@@ -12,6 +12,9 @@
         {% endif %}
         <p style="margin-left:320px">Username : <input type="text" class="input-block-level" placeholder="username" name="username" value="" size="25"></p>
 	<p style="margin-left:320px">Password &nbsp;: <input type="password" class="input-block-level" placeholder="password" name="password" value="" size="25"></p>
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
 	<button class="btn btn-primary" type="submit" style="margin-left:320px">Sign in</button>
 	</form>
 {% endblock %}

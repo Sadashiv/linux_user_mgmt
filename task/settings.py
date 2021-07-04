@@ -170,3 +170,4 @@ EMAIL_USE_TLS = False
 #This did the trick
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'

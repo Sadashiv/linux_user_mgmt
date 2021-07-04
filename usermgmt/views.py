@@ -214,7 +214,10 @@ def user_login(request):
               # If the account is valid and active, we can login the user in
               # We'll send the user bact to the homepage
               login(request, user)
-              return HttpResponseRedirect('/home')
+              if 'next' in request.POST:
+                return HttpResponseRedirect(request.POST.get('next'))
+              else:
+                return HttpResponseRedirect('.')
           else:
               # An active account was used - no logging in
               return HttpResponse("Your account got disabled")
@@ -232,5 +235,5 @@ def user_logout(request):
     logout(request)
 
     #Take the user back to the homepage
-    return HttpResponseRedirect('/home')
+    return HttpResponseRedirect('.')
 
