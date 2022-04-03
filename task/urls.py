@@ -21,5 +21,6 @@ urlpatterns = [
     path(r'register', views.register, name='register'),
     path(r'login', views.user_login, name='login'),
     path(r'logout', views.user_logout, name='logout'),
+    path(r'autofetch', views.autofetch, name='autofetch'),
 
 ]

@@ -1,0 +1,27 @@
+{% extends 'usermgmt/home.html' %}
+{% block title %}autofetch {% endblock %}
+{% block body_block %}
+
+	<form id="autofetch" method="post" action="autofetch">
+	<h3 style="font-weight: bold; margin-left:320px">Get Data</h3>
+	{% csrf_token %}
+    <label>Name:</label>
+    <select name="username">
+    <option value="Sadashiv">Sadashiv</option>
+    <option value="Ramesh">Ramesh</option>
+  </select>
+  <br/>
+  <br/>
+    <label>Location:</label>
+    <select name="location">
+    <option value="Bengaluru">Bengaluru</option>
+    <option value="US">US</option>
+  </select>
+
+	<button class="btn btn-primary" type="submit" style="margin-left:320px">Get Data</button>
+    <br/>
+{%for data in get_data %}
+    {{ data.company }}
+{% endfor %}
+	</form>
+{% endblock %}

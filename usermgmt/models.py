@@ -13,4 +13,11 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
 
+class UserDetails(models.Model):
+    username = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    company = models.CharField(max_length=100)
+    def __unicode__(self):
+        return self.user.username
+
 

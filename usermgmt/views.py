@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from usermgmt.forms import Adduser, Usermod, Userdel, UserGrantAccess, UserForm, UserProfileForm
+from usermgmt.models import UserDetails
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -12,6 +13,17 @@ import grp
 # Create your views here.
 
 sys_sudo_pwd = 'halesh'
+
+
+def autofetch(request):
+    """ """
+    username = request.POST.get('username')
+    location = request.POST.get('location')
+    get_data = UserDetails.objects.filter(username=username).filter(location=location)
+
+    context_dict = {'get_data': get_data}
+    return render(request, 'usermgmt/autofetch.html', context_dict)
+
 
 def home(request):
     """ """
