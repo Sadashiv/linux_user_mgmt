@@ -52,3 +52,23 @@ However please install python=2.7.9 and Django=1.7.5.
 ============================================================================================================================
 Once installation done please perform step no 4 and 5 Again.
 ============================================================================================================================
+
+Install MySQL
+=============
+sudo apt install mysql-server
+sudo systemctl start mysql.service
+sudo systemctl status mysql.service
+mysql_secure_installation 
+sudo mysql
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+exit
+mysql -u root -p
+mysql> CREATE USER 'username'@'host' IDENTIFIED WITH authentication_plugin BY 'password';
+mysql> CREATE USER 'sammy'@'localhost' IDENTIFIED BY 'password';
+
+Create database:
+mysql> create database djangodb;
+
+$ ./usr/bin/python3 manage.py makemigrations usermgmt
+$ ./usr/bin/python3 manage.py migrate usermgmt
+

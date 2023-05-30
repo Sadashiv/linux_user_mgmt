@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from usermgmt.forms import Adduser, Usermod, Userdel, UserGrantAccess, UserForm, UserProfileForm
-from usermgmt.models import UserDetails
+from usermgmt.models import UserDetails,UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -12,7 +12,7 @@ import sys
 import grp
 # Create your views here.
 
-sys_sudo_pwd = 'halesh'
+sys_sudo_pwd = 'devops'
 
 
 def autofetch(request):
