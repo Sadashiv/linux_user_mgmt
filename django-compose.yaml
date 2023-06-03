@@ -1,0 +1,26 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.0.33
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'djangodb'
+      MYSQL_USER: 'sadashiv'
+      MYSQL_PASSWORD: 'Sadashiv@123'
+      MYSQL_ROOT_PASSWORD: 'root@123'
+      MYSQL_HOST: '127.0.0.1'
+    volumes: 
+      - /tmp/opt/mysqld:/var/run/mysqld
+      - ./db:/var/lib/mysql
+  web:
+    # replace username/repo:tag with your name and image details
+    build: .
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - .:/opt
+      - /tmp/opt/mysqld:/run/mysqld
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
