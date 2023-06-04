@@ -1,7 +1,10 @@
 FROM python:3.8
 
 EXPOSE 8000
-ADD https://files.pythonhosted.org/packages/a5/61/a867851fd5ab77277495a8709ddda0861b28163c4613b011bc00228cc724/requests-2.28.1.tar.gz /opt
+
+# Set Python output is sent straight to terminal to see the output in realtime.
+ENV PYTHONUNBUFFERED=1
+
 COPY . /opt
 COPY entrypoint.sh /opt
 WORKDIR /opt
