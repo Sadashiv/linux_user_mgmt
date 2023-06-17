@@ -1,6 +1,6 @@
-============================
-Manage user Account in Linux
-============================
+=============================================
+Manage user Account in Linux Install mnaually
+
 
 This repositary is going to help AddUser, ModifyUser and DelUser in Linux only
 
@@ -47,11 +47,10 @@ step 5 : Run the server in development mode::
 
 If above step is not going to work for you::
 
-However please install python=2.7.9 and Django=1.7.5.
+However please install python=3.8 and Django=3.2
 
-============================================================================================================================
 Once installation done please perform step no 4 and 5 Again.
-============================================================================================================================
+============================================================
 
 Install MySQL
 =============
@@ -72,3 +71,17 @@ mysql> create database djangodb;
 $ ./usr/bin/python3 manage.py makemigrations usermgmt
 $ ./usr/bin/python3 manage.py migrate usermgmt
 
+
+
+Creating Docker image for our Application
+=========================================
+docker build -t <image_name>:<version> .
+
+docker build -t linux_usermgmt:v1.0 .
+
+Tag image: docker tag linux_usermgmt:v1.0 9538253250/linux_usermgmt:v1.0
+Push image: docker push 9538253250/linux_usermgmt:v1.0
+
+Docker-compose to run with django app and MySQL
+===============================================
+docker-compse up
