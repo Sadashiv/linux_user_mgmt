@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-#    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -85,7 +85,8 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 
 #Middleware
-CSRF_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = True
 #X_FRAME_OPTIONS  = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True

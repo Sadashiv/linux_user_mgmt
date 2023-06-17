@@ -5,6 +5,7 @@ from usermgmt.models import UserDetails,UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 import  pwd
 import crypt
 import os
@@ -28,7 +29,7 @@ def autofetch(request):
 def home(request):
     """ """
     return render(request, 'usermgmt/home.html')
-
+@csrf_exempt
 @login_required
 def index(request):
     adduser = Adduser()
@@ -37,6 +38,7 @@ def index(request):
     return render(request, 'usermgmt/index.html', context_dict)
 
 
+@csrf_exempt
 @login_required
 def addsuccess(request):
     """ """
@@ -61,6 +63,7 @@ def addsuccess(request):
 
     return render(request, 'usermgmt/addsuccess.html', {'userexist': userexist, 'username': username})
 
+@csrf_exempt
 @login_required
 def usermod(request):
     """ """
@@ -69,6 +72,7 @@ def usermod(request):
     context_dict = {'user_mod' : adduser}
     return render(request, 'usermgmt/usermod.html', context_dict)
 
+@csrf_exempt
 @login_required
 def modifyuser(request):
     """ """
@@ -90,6 +94,7 @@ def modifyuser(request):
     return render(request, 'usermgmt/usermodsucc.html', {'new_username': new_username, 'oldusername': oldusername})
 
 
+@csrf_exempt
 @login_required
 def userdel(request):
     """ """
@@ -99,6 +104,7 @@ def userdel(request):
     return render(request, 'usermgmt/userdel.html', context_dict)
 
 
+@csrf_exempt
 @login_required
 def deleteduser(request):
     """ """
@@ -123,6 +129,7 @@ def deleteduser(request):
 
     return render(request, 'usermgmt/userdelsucc.html', {'username': username, 'userlog': userlog})
 
+@csrf_exempt
 @login_required
 def usergrant(request):
     """ """
@@ -131,6 +138,7 @@ def usergrant(request):
     context_dict = {'user_grant' : usergrant}
     return render(request, 'usermgmt/usergrant.html', context_dict)
 
+@csrf_exempt
 @login_required
 def grantusersucc(request):
     """ """
@@ -158,6 +166,7 @@ def grantusersucc(request):
 
     return render(request, 'usermgmt/usergrantsucc.html', {'username': username})
 
+@csrf_exempt
 def register(request):
 
     # A boolean value for telling the template whether the registration was successful.
@@ -213,7 +222,7 @@ def register(request):
 
 
 
-
+@csrf_exempt
 def user_login(request):
    #If the request is HTTP POST, try to pull out the relevent information
    if request.method == 'POST':
