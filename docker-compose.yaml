@@ -1,0 +1,29 @@
+# docker-compose.yml
+version: "3.8"
+services:
+  app:
+    build: .
+    # TODO remove hard code sleep, it should use short sleep retry in entrypoint.sh
+    volumes:
+      - .:/opt # mount current folder to /opt folder in side a container
+    ports:
+      - 8080:8000
+    image: linux_user_mgmt:mysql
+    container_name: django_container
+    depends_on:
+      - db
+#    command: python manage.py runserver 0.0.0.0:8000
+  db:
+    image: mysql:8.0.33
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+#       MYSQL_USER: 'root'
+       MYSQL_ROOT_PASSWORD: 'root@123'
+#       MYSQL_PASSWORD: 'root@123'
+       MYSQL_DATABASE: 'djangodb'
+#      - MYSQL_ROOT_HOST=%
+#       MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+    container_name: mysql_db
+    ports:
+      - 3306:3306
