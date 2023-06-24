@@ -6,7 +6,6 @@ EXPOSE 8000
 ENV PYTHONUNBUFFERED=1
 
 COPY . /opt
-COPY entrypoint.sh /opt
 WORKDIR /opt
 RUN pip install -r requirements.txt
 #ENTRYPOINT ['./entrypoint.sh']
