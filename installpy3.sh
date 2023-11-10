@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION="3.9.5"
+VERSION="3.12.0"
 PYTHON="Python-$VERSION"
 MD5="b3fb85fd479c0bf950c626ef80cacb57"
 PREFIX="`pwd`/usr"
