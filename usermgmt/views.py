@@ -28,11 +28,15 @@ def autofetch(request):
 
 def home(request):
     """ """
-    return render(request, 'usermgmt/home.html')
+    bgcolor = os.getenv('APP_COLOR')
+    print(bgcolor)
+    context_dict = {'bgcolor': bgcolor}
+    return render(request, 'usermgmt/home.html', context_dict)
 @csrf_exempt
 @login_required
 def index(request):
     adduser = Adduser()
+
 
     context_dict = {'add_user' : adduser}
     return render(request, 'usermgmt/index.html', context_dict)

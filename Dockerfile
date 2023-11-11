@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.12.0
 
 EXPOSE 8000
 
@@ -9,4 +9,4 @@ COPY . /opt
 WORKDIR /opt
 RUN pip install -r requirements.txt
 #ENTRYPOINT ['./entrypoint.sh']
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8000"]

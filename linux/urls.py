@@ -6,7 +6,7 @@ from usermgmt import views
 admin.autodiscover()
 urlpatterns = [
     # Examples:
-    # url(r'^$', 'task.views.home', name='home'),
+    # url(r'^$', 'linux.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     path(r'admin/', admin.site.urls),
     path(r'', views.home, name='home'),
