@@ -49,19 +49,25 @@ echo "$PYTHON is installed here:"
 echo "./usr/bin/python3"
 echo "*********************************************"
 
-if [ ! -f "setuptools-$SETUPTOOL_VERSION.tar.gz" ];
-then
-    wget -c https://files.pythonhosted.org/packages/12/68/95515eaff788370246dac534830ea9ccb0758e921ac9e9041996026ecaf2/setuptools-$SETUPTOOL_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
-fi
-if [ ! -f "pip-$PIP_VERSION.tar.gz" ];
-then
-    wget -c https://files.pythonhosted.org/packages/b7/2d/ad02de84a4c9fd3b1958dc9fb72764de1aa2605a9d7e943837be6ad82337/pip-$PIP_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
-fi
-tar zxf setuptools-$SETUPTOOL_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
-tar xf pip-$PIP_VERSION.tar.gz
-echo "*********************************************"
-echo "Started Installing the setuptools and pip"
-cd setuptools-$SETUPTOOL_VERSION && ../../usr/bin/python3 setup.py install 1>>$LOGNAME 2>>$LOGNAME && cd ..
-cd pip-$PIP_VERSION && ../../usr/bin/python3 setup.py install 1>>$LOGNAME 2>>$LOGNAME && cd ..
-echo "Completed Installing the setuptools and pip"
-echo "*********************************************"
+echo "Installing the pip latest version"
+$VALIDATE_PY_PATH -m pip install pip
+echo "Installed the pip latest version of pip"
+
+
+
+#if [ ! -f "setuptools-$SETUPTOOL_VERSION.tar.gz" ];
+#then
+#    wget -c https://files.pythonhosted.org/packages/12/68/95515eaff788370246dac534830ea9ccb0758e921ac9e9041996026ecaf2/setuptools-$SETUPTOOL_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
+#fi
+#if [ ! -f "pip-$PIP_VERSION.tar.gz" ];
+#then
+#    wget -c https://files.pythonhosted.org/packages/b7/2d/ad02de84a4c9fd3b1958dc9fb72764de1aa2605a9d7e943837be6ad82337/pip-$PIP_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
+#fi
+#tar zxf setuptools-$SETUPTOOL_VERSION.tar.gz 1>>$LOGNAME 2>>$LOGNAME
+#tar xf pip-$PIP_VERSION.tar.gz
+#echo "*********************************************"
+#echo "Started Installing the setuptools and pip"
+#cd setuptools-$SETUPTOOL_VERSION && ../../usr/bin/python3 setup.py install 1>>$LOGNAME 2>>$LOGNAME && cd ..
+#cd pip-$PIP_VERSION && ../../usr/bin/python3 setup.py install 1>>$LOGNAME 2>>$LOGNAME && cd ..
+#echo "Completed Installing the setuptools and pip"
+#echo "*********************************************"
