@@ -24,12 +24,12 @@ import pwd
 #usermod -l sadaa sada
 
 for u in pwd.getpwall():
-    print u[0]
+    print(u[0])
     if u[0] == 'sadaa':
-    pass
+        pass
 
 try:
     a = pwd.getpwnam('sada')
-    print a
+    print(a)
 except:
-    print "bye"
+    print("bye")
