@@ -1,14 +1,13 @@
 import usermgmt
 from django import forms
 from django.contrib.auth.models import User
-from usermgmt.models import UserProfile
 
 class Adduser(forms.Form):
     """ """
     username = forms.CharField(max_length=128)
     password = forms.CharField(widget=forms.PasswordInput)
     shelltype = forms.CharField(max_length=128)
-    
+
 
 class Usermod(forms.Form):
     """ """
@@ -31,9 +30,4 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'password')
 
-class UserProfileForm(forms.ModelForm):
-    """ """
-    class Meta:
-        model = UserProfile
-        fields = ('website',)
 

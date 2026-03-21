@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from usermgmt.forms import Adduser, Usermod, Userdel, UserGrantAccess, UserForm, UserProfileForm
-from usermgmt.models import UserDetails,UserProfile
+from usermgmt.forms import Adduser, Usermod, Userdel, UserGrantAccess, UserForm
+from usermgmt.models import UserDetails
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.hashers import make_password
+from usermgmt.models import UserProfile
 import  pwd
 import crypt
 import os
@@ -181,48 +183,35 @@ def register(request):
     if request.method == 'POST':
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
-        user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
-
-        # If the two forms are valid...
-        if user_form.is_valid() and profile_form.is_valid():
-            # Save the user's form data to the database.
-            user = user_form.save()
-
-            # Now we hash the password with the set_password method.
-            # Once hashed, we can update the user object.
-            user.set_password(user.password)
-            user.save()
-
-            # Now sort out the UserProfile instance.
-            # Since we need to set the user attribute ourselves, we set commit=False.
-            # This delays saving the model until we're ready to avoid integrity problems.
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-
-            # Now we save the UserProfile model instance.
-            profile.save()
-
-            # Update our variable to tell the template registration was successful.
-            registered = True
-
-        # Invalid form or forms - mistakes or something else?
-        # Print problems to the terminal.
-        # They'll also be shown to the user.
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        website = request.POST.get('website')
+                # Check duplicates
+        if User.objects.filter(username=username).exists():
+            error = "Username already taken."
+        elif User.objects.filter(email=email).exists():
+            error = "Email already registered."
         else:
-            print(user_form.errors, profile_form.errors)
+            # Step 1 — create user in auth_user table
+            user = User.objects.create_user(
+                username = username,
+                email    = email,
+                password = password,
+            )
 
-    # Not a HTTP POST, so we render our form using two ModelForm instances.
-    # These forms will be blank, ready for user input.
+            # Step 2 — create userprofile with website  ✅
+            UserProfile.objects.create(
+                user    = user,
+                website = website
+            )
+
+            registered = True
+        return render(request, 'usermgmt/register.html', {'registered': True})
     else:
-        user_form = UserForm()
-        profile_form = UserProfileForm()
 
-    # Render the template depending on the context.
-    return render(request,
-            'usermgmt/register.html',
-            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+        return render(request,
+            'usermgmt/register.html' )
 
 
 
